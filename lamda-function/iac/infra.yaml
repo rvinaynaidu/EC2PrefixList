@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: 2010-09-09
+Metadata:
+  Revision: 13-March-2021
+Description: AWS Cloudformation Stack for the Base Infra Stack
+
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+
+Resources:
+
+  LambdaFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Join ['-', [!Ref Environment, !Ref AWS::StackName, lambda-execution-role]]
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+
+        - PolicyName: "ECSPermissions"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Sid: "InvokeSelf"
+                Effect: "Allow"
+                Action:
+                  - "lambda:InvokeFunction"
+                Resource:
+                  !Sub "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-lambda-prefix-list"
+              - Sid: "EC2Access"
+                Effect: "Allow"
+                Action:
+                  - "ec2:*"
+                Resource: "*"
+              - Sid: "CloudformationAccess"
+                Effect: "Allow"
+                Action:
+                  - "cloudformation:*"
+              - Sid: "ManageLambdaLogs"
+                Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                  - "logs:PutRetentionPolicy"
+                  - "logs:PutSubscriptionFilter"
+                  - "logs:DescribeLogStreams"
+                  - "logs:DeleteLogGroup"
+                  - "logs:DeleteRetentionPolicy"
+                  - "logs:DeleteSubscriptionFilter"
+                Resource:
+                  !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${AWS::StackName}-lambda-prefix-list:*:*"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+
+  LambdaFunction:
+    Type: AWS::Lambda::Function
+    DependsOn:
+      - "LambdaFunctionRole"
+    Properties:
+      FunctionName:
+        !Join ['-', [!Ref AWS::StackName, lambda-prefix-list]]
+      Handler: lambda_function.handler
+      Role: !GetAtt LambdaFunctionRole.Arn
+      Code:
+        S3Bucket: barath-ecs-cfn-lambda
+        S3Key: ec2-prefix-list-lambda.zip
+      Runtime: python3.8
+      Timeout: 15
+      TracingConfig:
+        Mode: Active
+      PackageType: Zip
+      MemorySize: 128
+

@@ -1,0 +1,11 @@
+cfn_lambda_handler-1.4.0.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+cfn_lambda_handler-1.4.0.dist-info/LICENSE,sha256=3X6P9MbQKruPHgvpinBQgCv_OHRHLaFBm98Pn7ZkGCM,742
+cfn_lambda_handler-1.4.0.dist-info/METADATA,sha256=DNS9mbL-vv4yJcALNl0djkEWtDdEZOZpE8LU1hBl6xE,1007
+cfn_lambda_handler-1.4.0.dist-info/RECORD,,
+cfn_lambda_handler-1.4.0.dist-info/REQUESTED,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cfn_lambda_handler-1.4.0.dist-info/WHEEL,sha256=HX-v9-noUkyUoxyZ1PMSuS7auUxDAR4VBdoYLqD0xws,110
+cfn_lambda_handler-1.4.0.dist-info/top_level.txt,sha256=0yXfltI0jnX1PGY_L-8A-Omkyf5exzMsTRv8EMferLk,19
+cfn_lambda_handler/__init__.py,sha256=1l0-8WwgoT5JAUCaSHX_lerYyl-MHFbmKr7FkaUKX-g,118
+cfn_lambda_handler/__pycache__/__init__.cpython-39.pyc,,
+cfn_lambda_handler/__pycache__/cfn_lambda_handler.cpython-39.pyc,,
+cfn_lambda_handler/cfn_lambda_handler.py,sha256=XX2hCy4FFK3maZmEGKgd-YvQNW0RDJVIdVgQGItYG-0,8604

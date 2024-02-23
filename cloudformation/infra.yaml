@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS Transfer Server Secutiry Group Prefix Management
+
+Parameters:
+  CidrEntries:
+    Type: CommaDelimitedList
+    Description: The list of CIDRs
+    Default: 10.0.0.0/16,10.1.0.0/16,10.2.0.0/16,10.3.0.0/16,10.4.0.0/16,10.5.0.0/16,10.6.0.0/16,10.7.0.0/16,10.8.0.0/16,10.9.0.0/16,10.10.0.0/16,10.11.0.0/16,10.12.0.0/16,10.13.0.0/16,10.14.0.0/16
+
+Resources:
+
+  PrefixList:
+    Type: "Custom::EC2PrefixListTask"
+    Properties:
+      ServiceToken: arn:aws:lambda:us-east-1:932250589015:function:dev2-lambda-prefix-list
+      PrefixListName: demoprefixlist
+      MaxEntries: 15
+      AddressFamily: "IPv4"
+      Entries: !Ref CidrEntries
+      Tags:
+      - Key: env
+        Value: demo

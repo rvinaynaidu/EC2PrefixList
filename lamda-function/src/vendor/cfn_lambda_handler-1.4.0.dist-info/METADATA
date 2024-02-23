@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: cfn-lambda-handler
+Version: 1.4.0
+Summary: This package provides a decorator for Python Lambda functions handling AWS CloudFormation custom resources.
+Home-page: https://github.com/mixja/cfn-lambda-handler
+Author: Justin Menga
+Author-email: justin.menga@gmail.com
+License: ISC
+Keywords: lambda aws cloudformation
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Provides: cfn_lambda_handler
+Requires-Dist: requests
+
+UNKNOWN
+
+
